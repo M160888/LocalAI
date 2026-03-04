@@ -2,6 +2,7 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 mod installer;
+mod license;
 mod model_mgr;
 mod ollama_api;
 mod system_info;
@@ -18,6 +19,26 @@ struct AppState {
 }
 
 // ─── Commands ────────────────────────────────────────────────────────────────
+
+#[tauri::command]
+fn check_license() -> license::LicenseStatus {
+    license::check()
+}
+
+#[tauri::command]
+fn get_device_id() -> String {
+    license::get_or_create_device_id()
+}
+
+#[tauri::command]
+fn store_license_token(token: String) -> Result<(), String> {
+    license::store_token(&token).map_err(|e| e.to_string())
+}
+
+#[tauri::command]
+fn clear_license() -> Result<(), String> {
+    license::clear_license().map_err(|e| e.to_string())
+}
 
 #[tauri::command]
 fn get_system_info() -> system_info::SystemInfo {
@@ -214,6 +235,10 @@ fn main() {
             install_log: Mutex::new(Vec::new()),
         })
         .invoke_handler(tauri::generate_handler![
+            check_license,
+            get_device_id,
+            store_license_token,
+            clear_license,
             get_system_info,
             get_model_recommendations,
             get_all_models,

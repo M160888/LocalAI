@@ -1,0 +1,15 @@
+{
+  "name": "local-ai-studio-license-worker",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "generate-keys": "node generate-keys.js"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240925.0",
+    "typescript": "^5.3.0",
+    "wrangler": "^3.0.0"
+  }
+}

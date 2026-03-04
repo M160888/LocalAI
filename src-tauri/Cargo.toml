@@ -19,6 +19,9 @@ tokio = { version = "1", features = ["full"] }
 futures-util = "0.3"
 dirs = "5"
 anyhow = "1"
+keyring = "2"
+jsonwebtoken = "9"
+uuid = { version = "1", features = ["v4"] }
 
 [features]
 default = ["custom-protocol"]

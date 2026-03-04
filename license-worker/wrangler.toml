@@ -1,0 +1,19 @@
+name = "local-ai-studio-license"
+main = "src/index.ts"
+compatibility_date = "2024-09-25"
+
+[[kv_namespaces]]
+binding = "LICENSES"
+id = "REPLACE_WITH_YOUR_KV_ID"
+
+# Secrets (set via: wrangler secret put SECRET_NAME)
+# LS_API_KEY        — Lemon Squeezy API key
+# LS_WEBHOOK_SECRET — Lemon Squeezy webhook signing secret
+# JWT_PRIVATE_KEY   — RSA private key (PEM, base64 encoded)
+
+[vars]
+# Map your Lemon Squeezy variant IDs to subscription days
+# Find variant IDs in LS dashboard → Products → your product → Variants
+LS_VARIANT_30  = "REPLACE_WITH_VARIANT_ID_30_DAYS"
+LS_VARIANT_60  = "REPLACE_WITH_VARIANT_ID_60_DAYS"
+LS_VARIANT_90  = "REPLACE_WITH_VARIANT_ID_90_DAYS"
