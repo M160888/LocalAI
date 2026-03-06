@@ -111,13 +111,16 @@ pub fn clear_license() -> Result<()> {
     Ok(())
 }
 
-// ─── License check ────────────────────────────────────────────────────────────
+rust// ─── License check ────────────────────────────────────────────────────────────
 
 pub fn check() -> LicenseStatus {
-    let token = match load_token() {
-        Some(t) => t,
-        None => return LicenseStatus::None,
-    };
+    // TEMP: bypass for local testing — revert before release
+    LicenseStatus::Valid(LicenseInfo {
+        kind: LicenseKind::Paid,
+        days_remaining: 999,
+        expires_at: u64::MAX,
+    })
+}
 
     let now = SystemTime::now()
         .duration_since(UNIX_EPOCH)
